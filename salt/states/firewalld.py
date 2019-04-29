@@ -647,7 +647,7 @@ def _present(name,
         for interface in new_interfaces:
             if not __opts__['test']:
                 try:
-                    __salt__['firewalld.add_interface'](name, interface,
+                    __salt__['firewalld.change_interface'](name, interface,
                                                         permanent=True)
                 except CommandExecutionError as err:
                     ret['comment'] = 'Error: {0}'.format(err)

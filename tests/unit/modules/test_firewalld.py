@@ -285,3 +285,24 @@ class FirewalldTestCase(TestCase, LoaderModuleMockMixin):
         '''
         with patch.object(firewalld, '__firewall_cmd', return_value='success'):
             self.assertEqual(firewalld.remove_rich_rule('zone', 'rule family="ipv4" source address="1.2.3.4" accept'), 'success')
+
+    def test_add_interface(self):
+        '''
+        Test adding interface to the zone
+        '''
+        with patch.object(firewalld, '__firewall_cmd', return_value='success'):
+            self.assertEqual(firewalld.add_interface('zone', 'eth0'), 'success')
+
+    def test_remove_interface(self):
+        '''
+        Test removing interface from the zone
+        '''
+        with patch.object(firewalld, '__firewall_cmd', return_value='success'):
+            self.assertEqual(firewalld.remove_interface('zone', 'eth0'), 'success')
+
+    def test_change_interface(self):
+        '''
+        Test rebinding interface to the zone
+        '''
+        with patch.object(firewalld, '__firewall_cmd', return_value='success'):
+            self.assertEqual(firewalld.change_interface('zone', 'eth0'), 'success')
